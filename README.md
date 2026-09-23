@@ -1,90 +1,84 @@
-# CampusQ — Smart Campus Queue & Service Management System
+# CampusQ
 
-A final-year level full-stack queue-management project using:
+## Smart Campus Queue & Service Management System
 
-- React + Vite
-- Flask REST API
-- SQLAlchemy
-- SQLite
-- JWT authentication
-- Role-based access: STUDENT, STAFF, ADMIN
+CampusQ is a full-stack web application designed to digitize campus service queues. Students can find campus services, join queues, receive digital tokens, and track their queue status. Staff can manage queues, while administrators can monitor users and system activity.
 
-## What is implemented
+## Features
 
-### Student
-- Registration and login
-- Department/service discovery
-- One active token per service per day
-- Backend-generated serial/token
-- Live current-serving token
-- People ahead / queue position
-- Estimated wait time
-- Expected turn time
-- Assigned counter information
-- Auto-refresh while waiting
-- "Your turn is next" state
-- Cancel token
+- Student, Staff, and Admin portals
+- JWT-based authentication
+- Role-based access control
+- Department and service browsing
+- Digital queue token generation
+- Live queue tracking
+- Estimated waiting time
+- Staff queue management
+- Admin dashboard
 - Queue history
+- Token cancellation
 
-### Staff
-- Assigned service queue
-- Live waiting list
-- Call next
-- Start service
-- Complete service
-- Skip token
-- Student notifications
-- Queue statistics
+## Tech Stack
 
-### Admin
-- Dashboard metrics
-- User list
-- Role-aware access
+- Frontend: React.js, Vite, Axios, React Router, CSS
+- Backend: Python, Flask, SQLAlchemy
+- Database: SQLite
+- Authentication: JWT
 
-## Why SQLite?
+## Project Structure
 
-SQLite is a real relational SQL database and is appropriate for a small/medium academic deployment where a separate database server is unnecessary. It reduces infrastructure and deployment complexity while still supporting tables, relationships, transactions, constraints and SQL. SQLAlchemy keeps the persistence layer portable, so the project can later move to PostgreSQL or MySQL when higher concurrency or managed production infrastructure is required.
+CampusQ/
+├── backend/
+│   ├── app/
+│   │   ├── routes/
+│   │   ├── models.py
+│   │   ├── extensions.py
+│   │   └── __init__.py
+│   ├── requirements.txt
+│   ├── run.py
+│   └── seed.py
+├── frontend/
+│   ├── src/
+│   ├── package.json
+│   └── vite.config.js
+├── .gitignore
+└── README.md
 
-## Run on Windows
+## Installation
 
 ### Backend
-```cmd
-cd backend
+
+git clone https://github.com/varsha-beeram/CampusQ.git
+cd CampusQ
 python -m venv venv
-venv\Scriptsctivate
+venv\Scripts\activate
+cd backend
 pip install -r requirements.txt
 python seed.py
 python run.py
-```
-
-Backend: http://localhost:5000
 
 ### Frontend
-Open another CMD:
-```cmd
-cd frontend
+
+Open a new terminal:
+
+cd CampusQ/frontend
 npm install
 npm run dev
-```
 
-Frontend: http://localhost:5173
+## Demo Accounts
 
-## Demo accounts
+Student
+Email: student@campusq.com
+Password: Student@123
 
-Student:
-`student@campusq.com` / `Student@123`
+Staff
+Email: staff@campusq.com
+Password: Staff@123
 
-Staff:
-`staff@campusq.com` / `Staff@123`
+Admin
+Email: admin@campusq.com
+Password: Admin@0123
 
-Admin:
-`admin@campusq.com` / `Admin@123`
+## Project Objective
 
-Staff 2:
-`staff2@campusq.com` / `Staff@123`
-
-The seed creates a realistic live queue for the first academic service so the student demo can immediately show a current-serving token, people ahead and estimated wait.
-
-## Important production note
-
-SQLite is file-based. For a public deployment with persistent multi-user data, use persistent storage or migrate the SQLAlchemy database URL to a managed PostgreSQL/MySQL database. The application code is structured so the database layer can be migrated later.
+CampusQ aims to reduce physical waiting time and provide a convenient digital queue management system for campus services.
